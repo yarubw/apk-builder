@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Camera Test</h1>
+
+<video id="video" autoplay playsinline style="width:100%;max-width:400px;"></video>
+<br>
+<button onclick="startCamera()">Start Camera</button>
+<p id="status">Ready</p>
+
+<script>
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: false
+        });
+
+        document.getElementById("video").srcObject = stream;
+        document.getElementById("status").innerText = "Camera works";
+      } catch (e) {
+        document.getElementById("status").innerText = e.name + ": " + e.message;
+      }
+    }
+</script>
+</body>
+</html>
